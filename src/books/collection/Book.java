@@ -5,6 +5,8 @@ package books.collection;
  * Класс содержит конструкторы, методы borrowBook, returnBook, displayInfo, а также геттеры для title, author, year и isAvailable.
  */
 public class Book {
+    public static final int UNKNOWN_YEAR = -1; // Неизвестный год
+
     private String title; // Название книги
     private String author; // Автор книги
     private int year; // Год издания книги
@@ -31,7 +33,7 @@ public class Book {
      * @param author Автор книги
      */
     public Book(String title, String author) {
-        this(title, author, -1, true);
+        this(title, author, UNKNOWN_YEAR, true);
     }
 
     /**
@@ -62,8 +64,9 @@ public class Book {
      * Метод displayInfo выводит информацию о книге.
      */
     public void displayInfo() {
-        System.out.printf("Название: %s, Автор: %s, Год издания: %d, Наличие: %s%n",
-                title, author, year, (isAvailable ? "Да" : "Нет"));
+        String yearInfo = (year != UNKNOWN_YEAR) ? String.valueOf(year) : "Год издания неизвестен"; // Проверка через константу
+        System.out.printf("Название: %s, Автор: %s, Год издания: %s, Наличие: %s%n",
+                title, author, yearInfo, (isAvailable ? "Да" : "Нет"));
     }
 
     /**
